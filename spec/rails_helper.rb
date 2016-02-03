@@ -1,9 +1,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
+require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
+
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'simple_bdd'
@@ -37,20 +38,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.include SimpeBdd, type:truncation
-    #config.include Devise:: TestHelpers, :type => :controller
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-      DatabaseCleaner.clean_with(:truncation)
-    end
-
-    config.before(:ench) do
-      DatabaseCleaner.start
-    end
-
-    config.after(:each) do
-      DatabaseCleaner.clean
-    end
+  
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
