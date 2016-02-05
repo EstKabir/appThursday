@@ -9,7 +9,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/webkit/matchers'
 require 'simple_bdd'
-
+require 'capybara/email/rspec'
 require 'shoulda/matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!

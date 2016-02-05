@@ -16,26 +16,22 @@
     <%= f.text_field :name %>
   </div>
   Crew Members:
-
     <ul>
-
        <%= f.fields_for :crew_members do |cm| %>
-
-     <li>
-
-         <%= cm.label :name %>
-
-         <%= cm.text_field :name %>
-
-         <%= cm.label :division %>
-
-         <%= cm.select(:division, ["Command", "Engineering", "Science"]) %>
-
-    </li>
-
+           <li>
+             <%= cm.label :name %>
+             <%= cm.text_field :name %>
+             <%= cm.label :division %>
+             <%= cm.select(:division, ["Command", "Engineering", "Science"]) %>
+           </li>
         <% end %>
-
     </ul>
+
+  Enter your email address to receive awesome stuff!
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

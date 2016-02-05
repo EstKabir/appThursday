@@ -6,6 +6,7 @@ feature "Starship with Crew Members" do
      Given "visitor can view new starship form"
      When "visitor enters information for starship and crew members"
      Then "visitor can see starship listing"
+     Then "visitor receives starship email"
    end
    #define methods from scenario
    def visitor_can_view_new_starship_form
@@ -26,6 +27,7 @@ feature "Starship with Crew Members" do
 
    def enter_starship_info
      fill_in("starship[name]", with: "USS Enterprise (NCC-1701-A)")
+     fill_in("starship[email]", with: "estbruno@gmail.com")
    end
 
    def enter_crew_members_info
@@ -35,5 +37,14 @@ feature "Starship with Crew Members" do
      select('Science', :from => "starship[crew_members_attributes][1][division]")
      fill_in("starship[crew_members_attributes][2][name]", with: "Leonard McCoy")
      select('Engineering', :from => "starship[crew_members_attributes][0][division]")
+   end
+
+   def visitor_receives_starship_email
+     open_email('estbruno@gmail.com')
+     expect(current_email.to).to eq ["estbruno@gmail.com"]
+     expect(current_email.subject).to eq 'Starship Created'
+     expect(current_email).to have_content('Congrats!')
+     clear_emails
+
    end
 end
